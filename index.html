@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Business Kin</title>
+  <style>
+    body { font-family: Arial; background:#f2f2f2; padding:20px; }
+    h1 { text-align:center; }
+    input { width:100%; padding:10px; margin:10px 0; }
+    .card {
+      background:white; padding:10px; margin:10px 0;
+      border-radius:8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Business de Kin</h1>
+<input type="text" id="search" placeholder="Cherche un commerce (ex: restaurant Gombe)" onkeyup="searchBusiness()">
+
+<div id="results"></div>
+
+<script>
+const businesses = [
+  {name:"Restaurant Nzambe", type:"restaurant", area:"Gombe", phone:"0990000000"},
+  {name:"Pharmacie Lumière", type:"pharmacie", area:"Limete", phone:"0810000000"},
+  {name:"Salon Beauté Star", type:"coiffure", area:"Bandal"}
+];
+
+function searchBusiness() {
+  let input = document.getElementById("search").value.toLowerCase();
+  let results = document.getElementById("results");
+  results.innerHTML = "";
+
+  businesses.forEach(b => {
+    if ((b.name + b.type + b.area).toLowerCase().includes(input)) {
+      results.innerHTML += `
+        <div class="card">
+          <h3>${b.name}</h3>
+          <p>${b.type} - ${b.area}</p>
+          <p>Tél: ${b.phone || "non renseigné"}</p>
+        </div>
+      `;
+    }
+  });
+}
+</script>
+
+</body>
+</html>
+Ajout du site
